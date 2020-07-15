@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
@@ -14,4 +14,31 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    // 根据视图大小自适应设置根元素font-size
+    (function(win) {
+    		var tid;
+    		function refreshRem() {
+    			let designSize = 1920; // 设计图尺寸
+    			let html = document.documentElement;
+    			let wW = html.clientWidth;// 窗口宽度
+    			let rem = wW * 100 / designSize; 
+    			document.documentElement.style.fontSize = rem + 'px';
+    	    }
+	     
+	    win.addEventListener('resize', function() {
+	    	clearTimeout(tid);
+	    	tid = setTimeout(refreshRem, 300);
+	    }, false);
+	    win.addEventListener('pageshow', function(e) {
+	    	if (e.persisted) {
+	    		clearTimeout(tid);
+	    		tid = setTimeout(refreshRem, 300);
+	    	}
+	    }, false);
+
+	    refreshRem();
+
+	  })(window);
+  </script>
 </html>
