@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="block firm-pic-carousel">
+    <div id="firm" class="block firm-pic-carousel">
       <el-carousel height="6rem">
         <el-carousel-item v-for="item in 4" :key="item">
           <el-image class="firm-pic" :src="picSrc(item)" :fit="'fill'"></el-image>
@@ -8,7 +8,7 @@
       </el-carousel>
       <!-- <span class="demonstration">律所外观</span> -->
     </div>
-    <el-divider class="divider-icon"><i class="el-icon-collection"></i><span class="title">擅长领域</span></el-divider>
+    <el-divider id="expert-in" class="divider-icon"><i class="el-icon-collection"></i><span class="title">擅长领域</span></el-divider>
     <div class="block expert-in">
       <el-row style="flex-wrap: wrap;" :gutter="40" type="flex" justify="space-between">
         <el-col class="expert-card" v-for="(o, index) in expertIn" :key="index">
@@ -22,7 +22,7 @@
         </el-col>
       </el-row>
     </div>
-    <el-divider class="divider-icon"><i class="el-icon-collection"></i><span class="title">律师简介</span></el-divider>
+    <el-divider id="lawyer" class="divider-icon"><i class="el-icon-user"></i><span class="title">律师简介</span></el-divider>
     <div class="lawyer">
       <el-row class="lawyer-card" v-for="(l, index) in lawyerList" :key="index" type="flex">
         <el-col class="lawyer-pic">
@@ -36,7 +36,15 @@
         </el-col>
       </el-row>
     </div>
-    <el-divider class="divider-icon"><i class="el-icon-collection"></i><span class="title">联系我们</span></el-divider>
+    <el-divider id="contact" class="divider-icon"><i class="el-icon-notebook-1"></i><span class="title">联系我们</span></el-divider>
+    <div class="contact-info">
+      <el-card class="contact-card" :body-style="{ padding: '30px' }">
+        <div class="info-item"><i class="el-icon-mobile-phone"></i>手机：<span>{{ contact.phone }}</span></div>
+        <div class="info-item"><i class="el-icon-phone-outline"></i>座机：<span>{{ contact.tel }}</span></div>
+        <div class="info-item"><i class="el-icon-message"></i>邮箱：<span>{{ contact.email }}</span></div>
+        <div class="info-item"><i class="el-icon-location-information"></i>地址：<span>{{ contact.address }}</span></div>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -86,6 +94,17 @@
     line-height: 30px;
     text-indent: 36px;
   }
+  .contact-info {
+    margin-bottom: 30px;
+  }
+  .contact-info .info-item:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  .contact-info .info-item,
+  .contact-info .info-item i,
+  .contact-info .info-item span {
+    font-size: 18px;
+  }
 </style>
 
 <script>
@@ -116,7 +135,13 @@ export default {
         name: '肖勇',
         introduction: '肖勇律师对知识产权诉讼，专利代理申请及维权，工伤保险、劳动保障、交通纠纷处理很有经验，对《合同法》、《婚姻法》、《物权法》、《劳动法》、《专利法》、《商标法》有较为深刻的研究，能够结合案件的具体情况提供有针对性的解决方案，擅长：起草、修改、审查各类合同，防范合同法律风险；处理各类婚姻问题，处理公司无形资产如专利、商标等法律事务；制作包括企业劳动合同签订、劳动管理及规章制度制订、工资结构设计等一整套法律运作方案等。',
         photo: ''
-      }]
+      }],
+      contact: {
+        phone: '13888123456',
+        tel: '0871-12345678',
+        email: 'xxxxx@123.com',
+        address: '昆明锦业律师事务所'
+      }
     }
   }
 }

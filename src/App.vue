@@ -16,8 +16,8 @@
       </el-header>
       <el-menu :default-active="activeIndex" class="nav-bar" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-menu-item index="1">律所介绍</el-menu-item>
-        <el-menu-item index="3">擅长领域</el-menu-item>
-        <el-menu-item index="2">律师简介</el-menu-item>
+        <el-menu-item index="2">擅长领域</el-menu-item>
+        <el-menu-item index="3">律师简介</el-menu-item>
         <el-menu-item index="4">联系我们</el-menu-item>
       </el-menu>
       <el-container class="main-container">
@@ -27,6 +27,7 @@
       </el-container>
       <el-footer></el-footer>
     </el-container>
+    <el-backtop :bottom="70"></el-backtop>
   </div>
 </template>
 
@@ -87,7 +88,14 @@ export default {
   },
   methods: {
     handleSelect (key, keyPath) {
-      console.log(key, keyPath)
+      let aim
+      switch (key) {
+        case '1': aim = 'firm'; break
+        case '2': aim = 'expert-in'; break
+        case '3': aim = 'lawyer'; break
+        case '4': aim = 'contact'; break
+      }
+      document.querySelector('#' + aim).scrollIntoView(true)
     }
   }
 }
