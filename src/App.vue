@@ -95,7 +95,9 @@ export default {
         case '3': aim = 'lawyer'; break
         case '4': aim = 'contact'; break
       }
-      document.querySelector('#' + aim).scrollIntoView(true)
+      document.querySelector('#' + aim).scrollIntoView({
+        behavior: 'smooth'
+      })
     }
   }
 }
